@@ -1,0 +1,21 @@
+$def with (dataDict)
+
+<h2>比赛列表</h2>
+
+<div class="row">
+    <div class="col-md-1">序号</div>
+    <div class="col-md-4">名称</div>
+    <div class="col-md-4">地址</div>
+    <div class="col-md-2">状态</div>
+</div>
+
+$for game in dataDict['games']:
+    <div class="row">
+        <div class="col-md-1">$game.id</div>
+        <div class="col-md-4"><a href="/game?id_game=$game.id">$game.name</a></div>
+        <div class="col-md-4"><a href="$game.url">$game.url</a></div>
+        <div class="col-md-2">$game.getStatue().name</div>
+    </div>
+    <div class="row">
+        <div class="col-md-11">$:game.des</div>
+    </div>

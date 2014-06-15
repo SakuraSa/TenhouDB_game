@@ -1,0 +1,25 @@
+$def with (dataDict)
+
+<div class="row">
+    <div class="col-md-1">序号</div>
+    <div class="col-md-4">天凤ID</div>
+    <div class="col-md-2">等级</div>
+    <div class="col-md-4">操作</div>
+</div>
+
+$for user in dataDict['users']:
+    <div class="row">
+        <div class="col-md-1">$user.id</div>
+        <div class="col-md-4">$user.username</div>
+        <div class="col-md-2">$user.getRole().name</div>
+        <div class="col-md-4">
+            <a href="/user?id_user=$user.id">查看</a>
+            $if user.id_role == 3 or (user.id_role == 2 and 0 in session.rights):
+                <a href="/manageuser?id_user=$user.id&amp;action=delete">删除</a>
+            $if 0 in session.rights:
+                $if user.id_role == 3:
+                    <a href="/manageuser?id_user=$user.id&amp;action=setrole&amp;value=2">升为管理员</a>
+                $elif user.id_role == 2:
+                    <a href="/manageuser?id_user=$user.id&amp;action=setrole&amp;value=3">降为会员</a>
+        </div>
+    </div>

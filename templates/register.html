@@ -1,0 +1,30 @@
+$def with (dataDict)
+<div class="login">
+  <div class="login-screen">
+    <div class="login-icon">
+      <img src="static/images/login/icon.png" alt="Welcome to Mail App" />
+      <h4>Welcome to <small>TenhouGame</small></h4>
+    </div>
+
+    <form class="login-form" action="/register" method="post">
+      <div class="form-group $dataDict['info']">
+        <input type="text" class="form-control" value="$dataDict['username']" placeholder="天凤ID" id="login-name" name="username"/>
+        <label class="login-field-icon fui-user" for="login-name"></label>
+      </div>
+
+      <div class="form-group $dataDict['info']">
+        <input type="password" class="form-control" value="" placeholder="输入密码" id="login-pass" name="password"/>
+        <label class="login-field-icon fui-lock" for="login-pass"></label>
+      </div>
+
+      <div class="form-group $dataDict['info']">
+        <input type="password" class="form-control" value="" placeholder="再次输入密码" id="login-passcfm" name="passwordcfm"/>
+        <label class="login-field-icon fui-lock" for="login-passcfm"></label>
+      </div>
+
+      <button class="btn btn-primary btn-lg btn-block">注册</button>
+      $if dataDict['info']:
+        <p style="color: black;">$dataDict['error']</p>
+    </div>
+  </form>
+</div>

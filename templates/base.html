@@ -1,0 +1,80 @@
+$def with (dataDict)
+<!DOCTYPE html>
+<html lang="cn">
+  <head>
+    <meta charset="utf-8">
+    <title>Tenhou Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="static/css/flat-ui.css" rel="stylesheet">
+    <link href="static/css/demo.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="static/images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <a class="navbar-brand" href="/">TenhouGame</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-01">
+        <ul class="nav navbar-nav">           
+        $for bar in dataDict['navbars']:
+          $if bar[2]:
+            <li class="active"><a href="$bar[1]">$bar[0]</a></li>
+          $else:
+            <li><a href="$bar[1]">$bar[0]</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        $if session.isLogin:
+          <li>
+            <a href="/user?id_user=$session.id_user">$session.name</a>
+            $if session.hasUnread:
+              <span class="navbar-new">$session.hasUnread</span>
+          </li>
+          <li>
+            <a href="/logout">注销</a>
+          </li>
+        $else:
+          <li>
+            <a href="/login">登陆</a>
+          </li>
+          <li>
+            <a href="/register">注册</a>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </nav><!-- /navbar -->
+
+    <div class="container">
+        $:dataDict['subpage']
+    </div>
+    <!-- /.container -->
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="static/js/jquery-1.8.3.min.js"></script>
+    <script src="static/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="static/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/bootstrap-select.js"></script>
+    <script src="static/js/bootstrap-switch.js"></script>
+    <script src="static/js/flatui-checkbox.js"></script>
+    <script src="static/js/flatui-radio.js"></script>
+    <script src="static/js/jquery.tagsinput.js"></script>
+    <script src="static/js/jquery.placeholder.js"></script>
+  </body>
+</html>

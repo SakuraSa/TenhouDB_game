@@ -1,0 +1,24 @@
+$def with (dataDict)
+<h2>$dataDict['user'].username</h2>
+<p>$dataDict['user'].getRole().name</p>
+<div class="container">
+    $:dataDict['user'].des
+</div>
+$if dataDict['okToUpdate']:
+    <form class="login-form" action="/user?id_user=$dataDict['user'].id" method="post">
+        <h5>修改简述：<h5>
+        <textarea class="form-control" name="des">$dataDict['user'].des</textarea>
+
+        <h5>修改密码：<h5>
+        <div class="form-group">
+        <input type="password" class="form-control" value="" placeholder="输入密码" id="login-pass" name="password"/>
+        <label class="login-field-icon fui-lock" for="login-pass"></label>
+        </div>
+  
+        <div class="form-group">
+        <input type="password" class="form-control" value="" placeholder="再次输入密码" id="login-passcfm" name="passwordcfm"/>
+        <label class="login-field-icon fui-lock" for="login-passcfm"></label>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" style="max-width: 300px;">提交</button>
+    </form>
